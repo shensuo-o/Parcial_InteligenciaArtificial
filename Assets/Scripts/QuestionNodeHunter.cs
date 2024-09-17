@@ -8,27 +8,49 @@ public class QuestionNodeHunter : Node
     public Node falseNode;
     public TypeQuestion questionType;
 
-    public override void Execute(Hunter hunter)
+    public override void ExecuteBoid(Boid boid)
+    {
+        switch (questionType)
+        {
+            case TypeQuestion.Hunter:
+                if(boid.hunter == true) 
+                    trueNode.ExecuteBoid(boid);
+                else
+                    falseNode.ExecuteBoid(boid);
+                break;
+            case TypeQuestion.Fruit:
+                if (boid.fruit == true)
+                    trueNode.ExecuteBoid(boid);
+                else
+                    falseNode.ExecuteBoid(boid);
+                break;
+
+        }
+    }
+
+    public override void ExecuteHunter(Hunter hunter)
     {
         switch (questionType)
         {
             case TypeQuestion.Energy:
                 if(hunter.Energia == true)
-                    trueNode.Execute(hunter);
+                    trueNode.ExecuteHunter(hunter);
                 else 
-                    falseNode.Execute(hunter);
+                    falseNode.ExecuteHunter(hunter);
                 break;
             case TypeQuestion.Distance:
                 if(hunter.DistanciaRebaño == true)
-                    trueNode.Execute(hunter);
+                    trueNode.ExecuteHunter(hunter);
                 else
-                    falseNode.Execute(hunter);
+                    falseNode.ExecuteHunter(hunter);
                 break;
         }
     }
    public enum TypeQuestion
     {
         Energy,
-        Distance
+        Distance,
+        Hunter,
+        Fruit
     }
 }

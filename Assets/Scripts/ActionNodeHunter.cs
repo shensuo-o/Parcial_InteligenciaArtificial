@@ -6,7 +6,7 @@ public class ActionNodeHunter : Node
 {
     public TypeAction type;
 
-    public override void Execute(Hunter hunter)
+    public override void ExecuteHunter(Hunter hunter)
     {
         switch (type)
         {
@@ -21,11 +21,30 @@ public class ActionNodeHunter : Node
                 break;
         }
     }
+    public override void ExecuteBoid(Boid boid)
+    {
+         switch(type)
+         { 
+            case TypeAction.Flocking:
+                boid.Flocking();   
+                break;
+            case TypeAction.Pursuit: 
+                boid.Pursuit();
+                break;
+            case TypeAction.Evade:
+                boid.Evade();
+                break;
+        
+         }
+    }
 
     public enum TypeAction
     {
         Perseguir,
         Patrullar,
-        Descansar
+        Descansar,
+        Flocking,
+        Evade,
+        Pursuit
     }
 }

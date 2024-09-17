@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Hunter : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Node rootNode;
     public bool Energia;
     public bool DistanciaRebaño;
@@ -12,7 +11,7 @@ public class Hunter : MonoBehaviour
 
     private void Update()
     {
-        rootNode.Execute(this);
+        rootNode.ExecuteHunter(this);
     }
     public void Descansar()
     {

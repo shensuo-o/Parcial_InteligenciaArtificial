@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Node : MonoBehaviour
 {
-    public abstract void Execute(Hunter hunter);
+    public abstract void ExecuteHunter(Hunter hunter);
+    public abstract void ExecuteBoid(Boid boid);
 }
