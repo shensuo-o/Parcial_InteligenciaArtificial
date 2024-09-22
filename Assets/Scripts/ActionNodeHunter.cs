@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActionNodeHunter : Node
 {
     public TypeAction type;
+    public Transform target;
 
     public override void ExecuteHunter(Hunter hunter)
     {
@@ -28,8 +29,8 @@ public class ActionNodeHunter : Node
             case TypeAction.Flocking:
                 boid.Flocking();   
                 break;
-            case TypeAction.Pursuit: 
-                boid.Pursuit();
+            case TypeAction.Seek: 
+                boid.Seek(target.position);
                 break;
             case TypeAction.Evade:
                 boid.Evade();
@@ -45,6 +46,6 @@ public class ActionNodeHunter : Node
         Descansar,
         Flocking,
         Evade,
-        Pursuit
+        Seek
     }
 }
