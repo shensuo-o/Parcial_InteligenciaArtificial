@@ -7,6 +7,7 @@ public class Boid : MonoBehaviour
     public Node rootNode;
     public bool hunter;
     public bool fruit;
+    public GameManager gameManager;
 
     [SerializeField] Transform target; //Objetivo del Seek.
 
@@ -16,13 +17,27 @@ public class Boid : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float _maxSteering; //Que tan brusca es la curva del Seek.
 
+    [SerializeField] float touchRadius;
+
     private void Update()
     {
-        rootNode.ExecuteBoid(this);
+            rootNode.ExecuteBoid(this);
 
-        Seek(target.position); //Llamado a Seek.
-        transform.position += _velocity * Time.deltaTime; //Hace que se mueva.
-        transform.forward = _velocity; //Hace que el Boid mire a donde va.
+            Seek(target.position); //Llamado a Seek.
+            transform.position += _velocity * Time.deltaTime; //Hace que se mueva.
+            transform.forward = _velocity; //Hace que el Boid mire a donde va.
+
+            float distanceToTarget = Vector3.Distance(target.position, transform.position);
+            if (distanceToTarget <= touchRadius)
+            {
+                gameManager.DestroyFruit();
+            }      
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+        Debug.Log("nuevo target = " + target);
     }
 
     //AddForce hace que el Boid se mueva en una direccion con una velocidad maxima.
