@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.position += _velocity * Time.deltaTime;
+        transform.position =LimitManager.instance.ApplyBounds(transform.position + _velocity * Time.deltaTime);
         transform.forward = _velocity * Time.deltaTime;
     }
 

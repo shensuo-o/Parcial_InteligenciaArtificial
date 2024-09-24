@@ -10,6 +10,7 @@ public class Hunter : Character
     public float Energy;
     public float PatrollEnergyCost;
     public float PursuitEnergyCost;
+    public float FullEnergy;
 
     public bool DistanciaRebaño;
 
@@ -22,6 +23,18 @@ public class Hunter : Character
     [SerializeField] Transform[] targets;
     [SerializeField] float distanceThreshold;
 
+    FSM _fsm;
+
+    private void Start()
+    {
+        _fsm = new FSM();
+
+        _fsm.CreateState("Rest", new Rest(_fsm));
+        _fsm.CreateState("Hunt", new Hunt(_fsm));
+        _fsm.CreateState("Patroll", new Patroll(_fsm, Energy));
+
+        _fsm.ChangeState("Patroll");
+    }
 
     protected override void Update()
     {
@@ -37,11 +50,17 @@ public class Hunter : Character
         {
             NextTarget();
         }
+
+        _fsm.Execute();
     }
     public void Descansar()
     {
         Debug.Log("Esta descansando");
         Energy += 10 * Time.deltaTime;
+        if (Energy >= FullEnergy)
+        {
+            Energia = true;
+        }
     }
 
     public void Patrullar()

@@ -26,10 +26,10 @@ public class ActionNodeHunter : Node
          switch(type)
          { 
             case TypeAction.Flocking:
-                boid.Flocking();   
+                boid.Flocking(); 
                 break;
             case TypeAction.Seek: 
-                boid.AddForce(boid.Seek(boid.target.position));
+                boid.AddForce(boid.Arrive(boid.target.position));
                 break;
             case TypeAction.Evade:
                 boid.AddForce(boid.Evade(boid.cazador));

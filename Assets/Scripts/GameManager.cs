@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public GameObject frutaPrefab;
     public Vector3 coordenadas;
     [Tooltip("cuanto se extiende en X el area")]
@@ -16,6 +18,28 @@ public class GameManager : MonoBehaviour
     public GameObject frutaInstanciada;
 
     public Boid boid;
+
+    public List<Boid> boids = new List<Boid>();
+    public float AlignmentRadius;
+    public float SeparationRadius;
+    public float CohesionRadius;
+
+    [Range(0, 1)]
+    public float AlignmentWeigth;
+
+    [Range(0, 1)]
+    public float SeparationWeigth;
+
+    [Range(0, 1)]
+    public float CohesionWeigth;
+
+    public float HunterRadius;
+    public float FruitRadius;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
     public void Start()
     {
         Create();
