@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class Hunter : Character
@@ -52,7 +53,25 @@ public class Hunter : Character
         }
 
         _fsm.Execute();
+
+        Detector(GameManager.Instance.boids, detectionRadius);
     }
+
+    public void Detector(List<Boid> boids, float radius)
+    {
+        foreach (var boid in boids)
+        {
+            if (Vector3.Distance(transform.position, boid.transform.position) < radius)
+            {
+                DistanciaRebaño = true;
+            }
+            else
+            {
+                DistanciaRebaño = false;
+            }
+        }
+    }
+
     public void Descansar()
     {
         Debug.Log("Esta descansando");

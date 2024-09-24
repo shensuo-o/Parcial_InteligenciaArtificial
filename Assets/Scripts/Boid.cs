@@ -31,18 +31,18 @@ public class Boid : Character
          rootNode.ExecuteBoid(this);
 
         Detector(GameManager.Instance.Cazador, HunterRadius,GameManager.Instance.frutas, FruitRadius);
-
-         float distanceToTarget = Vector3.Distance(target.position, transform.position);
-         if (distanceToTarget <= touchRadius)
-         {
-              _scriptFruta.DestroyFruit();
-         }
     }
 
     public void Detector(Hunter Cazador, float radiusH, List<GameObject> frutas, float radiusF)
     {
         foreach (var fruta in frutas)
         {
+            if(fruta == null)
+            {
+                target = null;
+                fruit = false;
+                continue;
+            }
             if (Vector3.Distance(transform.position, fruta.transform.position) < radiusF)
             {
                 target = fruta.transform;
@@ -50,20 +50,19 @@ public class Boid : Character
             }
             else
             {
+                target = null;
                 fruit = false;
             }
         }
         if (Vector3.Distance(transform.position, Cazador.transform.position) < radiusH)
         {
             hunter = true;
-        }
-    }
 
-    public void SetTarget(Transform newTarget)
-    {
-        target = newTarget;
-        //_scriptFruta = 
-        Debug.Log("nuevo target = " + target);
+        }
+        else
+        {
+            hunter = false;
+        }
     }
 
     Vector3 Alignment(List<Boid> boids, float radius)
@@ -167,7 +166,6 @@ public class Boid : Character
 
     public Vector3 Seek(Vector3 target)
     {
-        Debug.Log("Estoy yendo a la fruta");
         Vector3 desiredVelocity = target - transform.position; //Hacia donde quiere ir.
         desiredVelocity.Normalize(); //Normaliza la velocidad deseada, para que sea de 1 en 1.
         desiredVelocity *= _maxVelocity; //Setea la velocidad maxima.

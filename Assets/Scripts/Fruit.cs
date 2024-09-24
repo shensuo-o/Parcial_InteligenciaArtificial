@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    [SerializeField] Boid boid;
-    public void DestroyFruit()
+    private void OnTriggerEnter(Collider other)
     {
-        if (this != null)
-        {
-            Destroy(this);
-            boid.fruit = false;
-        }
+        GameManager.Instance.frutas.Remove(this.gameObject);
+        Destroy(this.gameObject);
     }
 }
