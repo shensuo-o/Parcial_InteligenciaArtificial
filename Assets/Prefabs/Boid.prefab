@@ -329,15 +329,15 @@ MonoBehaviour:
   _maxVelocity: 5
   touchRadius: 1.3
   detectionRadius: 10
-  FruitRadius: 0
-  HunterRadius: 0
+  FruitRadius: 8
+  HunterRadius: 10
   rootNode: {fileID: 5333505086451066568}
   hunter: 0
   fruit: 1
   gameManager: {fileID: 0}
   target: {fileID: 0}
-  _maxSteering: 0.005
-  ArriveRadius: 10
+  _maxSteering: 0.007
+  ArriveRadius: 5
 --- !u!1 &7126430919886852223
 GameObject:
   m_ObjectHideFlags: 0

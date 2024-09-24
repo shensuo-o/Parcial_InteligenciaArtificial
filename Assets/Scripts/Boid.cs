@@ -8,7 +8,8 @@ public class Boid : Character
     public Node rootNode;
     public bool hunter;
     public bool fruit;
-    public GameManager gameManager;
+    public Fruit _scriptFruta;
+    public GameManager _gameManager;
 
     [SerializeField] public Transform target; //Objetivo del Seek.
 
@@ -20,7 +21,6 @@ public class Boid : Character
     public void Start()
     {
         GameManager.Instance.boids.Add(this);
-
         AddForce(new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)));
     }
 
@@ -35,7 +35,7 @@ public class Boid : Character
          float distanceToTarget = Vector3.Distance(target.position, transform.position);
          if (distanceToTarget <= touchRadius)
          {
-              gameManager.DestroyFruit();
+              _scriptFruta.DestroyFruit();
          }
     }
 
@@ -43,14 +43,17 @@ public class Boid : Character
     {
         foreach (var fruta in frutas)
         {
-            if (Vector3.Distance(transform.position, fruta.transform.position) > radiusF)
+            if (Vector3.Distance(transform.position, fruta.transform.position) < radiusF)
             {
                 target = fruta.transform;
                 fruit = true;
             }
-            fruit = false;
+            else
+            {
+                fruit = false;
+            }
         }
-        if (Vector3.Distance(transform.position, Cazador.transform.position) > radiusH)
+        if (Vector3.Distance(transform.position, Cazador.transform.position) < radiusH)
         {
             hunter = true;
         }
@@ -59,6 +62,7 @@ public class Boid : Character
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        //_scriptFruta = 
         Debug.Log("nuevo target = " + target);
     }
 

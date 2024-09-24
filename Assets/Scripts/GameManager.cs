@@ -67,12 +67,6 @@ public class GameManager : MonoBehaviour
         frutas.Add(frutaInstanciada);
     }
 
-    public void DestroyFruit()
-    {
-        if (frutaInstanciada != null)
-        {
-            Destroy(frutaInstanciada);
-        }
-    }
+
 
 }

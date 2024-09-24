@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] Boid boid;
+    public void DestroyFruit()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (this != null)
+        {
+            Destroy(this);
+            boid.fruit = false;
+        }
     }
 }
