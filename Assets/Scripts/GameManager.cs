@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
         Create();
 
     }
+
+    public void Update()
+    {
+        
+    }
+
     public void Create()
     {
         area = areaX * areaY;

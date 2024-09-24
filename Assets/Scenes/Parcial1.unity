@@ -553,7 +553,7 @@ Transform:
   m_GameObject: {fileID: 318616714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.08, y: 0, z: -6.86}
+  m_LocalPosition: {x: 5.08, y: 0.52, z: -6.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -727,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 878940721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -958,7 +958,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 27fac342b537e5d459ae450502fba6a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -997,7 +997,7 @@ Transform:
   m_GameObject: {fileID: 1067466418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.58, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1397,13 +1397,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585355843}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 45.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1782865303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,14 +1807,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42a248c132659440a28b1c413757272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxVelocity: 5
   rootNode: {fileID: 1933968165}
   hunter: 0
   fruit: 0
   gameManager: {fileID: 97625266}
   target: {fileID: 6725650958512243951, guid: 06a20237a06002346bda83d62f08816f, type: 3}
-  _maxVelocity: 5
-  _maxSteering: 0.007
+  _maxSteering: 0.005
   touchRadius: 0.3
+  detectionRadius: 0
 --- !u!1 &2147317538
 GameObject:
   m_ObjectHideFlags: 0
