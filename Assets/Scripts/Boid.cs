@@ -37,12 +37,8 @@ public class Boid : Character
     {
         foreach (var fruta in frutas)
         {
-            if(fruta == null)
-            {
-                target = null;
-                fruit = false;
-                continue;
-            }
+            target = null;
+
             if (Vector3.Distance(transform.position, fruta.transform.position) < radiusF)
             {
                 target = fruta.transform;

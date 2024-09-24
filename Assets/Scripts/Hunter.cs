@@ -45,6 +45,12 @@ public class Hunter : Character
         if (Energy <= 0)
         {
             Energia = false;
+            DistanciaRebaño = false;
+        }
+        else if (Energy > 0)
+        {
+            Detector(GameManager.Instance.boids, detectionRadius);
+            Kill(GameManager.Instance.boids, touchRadius);
         }
 
         if(Vector3.Distance(transform.position, targets[currentTarget].position) < distanceThreshold)
@@ -54,7 +60,7 @@ public class Hunter : Character
 
         _fsm.Execute();
 
-        Detector(GameManager.Instance.boids, detectionRadius);
+        
     }
 
     public void Detector(List<Boid> boids, float radius)
@@ -72,9 +78,23 @@ public class Hunter : Character
         }
     }
 
+    public void Kill(List<Boid> boids, float radius)
+    {
+        foreach (var boid in boids)
+        {
+            if (Vector3.Distance(transform.position, boid.transform.position) < touchRadius)
+            {
+                boids.Remove(boid);
+                Destroy(boid);
+                DistanciaRebaño = false;
+            }
+        }
+    }
+
     public void Descansar()
     {
         Debug.Log("Esta descansando");
+        _velocity = Vector3.zero;
         Energy += 10 * Time.deltaTime;
         if (Energy >= FullEnergy)
         {
