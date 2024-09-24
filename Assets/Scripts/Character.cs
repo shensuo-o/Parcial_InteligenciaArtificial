@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
 
     [SerializeField] protected float touchRadius;
     [SerializeField] protected float detectionRadius;
+    [SerializeField] public float FruitRadius;
+    [SerializeField] public float HunterRadius;
 
     public Vector3 Velocity { get { return _velocity; } }
     public float MaxVelocity { get { return _maxVelocity; } }

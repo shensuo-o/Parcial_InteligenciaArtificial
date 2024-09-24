@@ -80,7 +80,6 @@ public class Hunter : Character
 
     public Vector3 Seek(Vector3 target)
     {
-        Debug.Log("Estoy yendo a la fruta");
         Vector3 desiredVelocity = target - transform.position;
         desiredVelocity.Normalize();
         desiredVelocity *= _maxVelocity;

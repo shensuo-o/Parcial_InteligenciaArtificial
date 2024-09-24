@@ -33,8 +33,12 @@ public class GameManager : MonoBehaviour
     [Range(0, 1)]
     public float CohesionWeigth;
 
-    public float HunterRadius;
-    public float FruitRadius;
+    public float timer;
+    public float spawnCD;
+
+    public List<GameObject> frutas = new List<GameObject>();
+
+    public Hunter Cazador;
 
     public void Awake()
     {
@@ -43,12 +47,16 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         Create();
-
     }
 
     public void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= spawnCD)
+        {
+            timer = 0;
+            Create();
+        }
     }
 
     public void Create()
@@ -56,7 +64,7 @@ public class GameManager : MonoBehaviour
         area = areaX * areaY;
         coordenadas = new Vector3(Random.Range(-area, area), 0, Random.Range(-area, area));
         frutaInstanciada = Instantiate(frutaPrefab, coordenadas, Quaternion.identity);
-        boid.SetTarget(frutaInstanciada.transform);
+        frutas.Add(frutaInstanciada);
     }
 
     public void DestroyFruit()
@@ -65,7 +73,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(frutaInstanciada);
         }
-            Create();
     }
 
 }

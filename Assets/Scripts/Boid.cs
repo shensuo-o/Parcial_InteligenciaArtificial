@@ -15,8 +15,6 @@ public class Boid : Character
     [Range(0f, 1f)]
     [SerializeField] float _maxSteering; //Que tan brusca es la curva del Seek.
 
-    [SerializeField] public Character cazador;
-
     [SerializeField] protected float ArriveRadius;
 
     public void Start()
@@ -32,16 +30,30 @@ public class Boid : Character
 
          rootNode.ExecuteBoid(this);
 
+        Detector(GameManager.Instance.Cazador, HunterRadius,GameManager.Instance.frutas, FruitRadius);
+
          float distanceToTarget = Vector3.Distance(target.position, transform.position);
          if (distanceToTarget <= touchRadius)
          {
               gameManager.DestroyFruit();
-         }      
+         }
     }
 
-    public void Detector()
+    public void Detector(Hunter Cazador, float radiusH, List<GameObject> frutas, float radiusF)
     {
-        
+        foreach (var fruta in frutas)
+        {
+            if (Vector3.Distance(transform.position, fruta.transform.position) > radiusF)
+            {
+                target = fruta.transform;
+                fruit = true;
+            }
+            fruit = false;
+        }
+        if (Vector3.Distance(transform.position, Cazador.transform.position) > radiusH)
+        {
+            hunter = true;
+        }
     }
 
     public void SetTarget(Transform newTarget)

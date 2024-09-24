@@ -32,7 +32,7 @@ public class ActionNodeHunter : Node
                 boid.AddForce(boid.Arrive(boid.target.position));
                 break;
             case TypeAction.Evade:
-                boid.AddForce(boid.Evade(boid.cazador));
+                boid.AddForce(boid.Evade(GameManager.Instance.Cazador));
                 break;
         
          }
