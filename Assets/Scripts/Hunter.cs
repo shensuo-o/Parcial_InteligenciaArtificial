@@ -84,7 +84,7 @@ public class Hunter : Character
         {
             if (Vector3.Distance(transform.position, boid.transform.position) < touchRadius)
             {
-                boids.Remove(boid);
+                GameManager.Instance.boids.Remove(boid);
                 Destroy(boid);
                 DistanciaRebaño = false;
             }
